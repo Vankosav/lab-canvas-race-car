@@ -2,7 +2,7 @@ class Obstacles {
     constructor (ctx, canvas) {
     this.x = Math.random() * canvas.width;
     this.y = 0;
-    this.width = (Math.random() * canvas.width) / 3;
+    this.width = (Math.random() * canvas.width) / 2;
     this.height = 30; 
     this.color = 'red';
     this.ctx = ctx; 
@@ -13,7 +13,7 @@ draw() {
     this.ctx.fillStyle = this.color;
 }
 move() {
-    this.y += 10;
+    this.y += 20;
   }
 
 }

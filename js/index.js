@@ -1,16 +1,18 @@
 import Car from "./player.js";
 import Obstacles from "./obstacles.js";
 
+
+const canvas = document.getElementById("canvas");
+const ctx = canvas.getContext("2d");
+
 window.onload = () => {
   document.getElementById("start-button").onclick = () => {
     startGame();
   };
-};
-const canvas = document.getElementById("canvas");
-const ctx = canvas.getContext("2d");
+}
 
-const road = new Image(); 
-road.src = "/lab-canvas-race-car/images/road.png"; 
+const road = new Image();
+road.src = "/lab-canvas-race-car/images/road.png";
 
 const myCar = new Car(ctx);
 const obstacle = [];
@@ -22,13 +24,12 @@ function clearCanvas() {
 let counter = 0;
 let gameLoop = setInterval(startGame, 1000 / 10); //when startGame is removed, the car is not moving but it starts on the click, when added it doesnt start on click
 
-
 function startGame() {
   clearCanvas();
   ctx.drawImage(road, 0, 0, 500, 700);
   myCar.draw();
-  if (counter % 30 === 0) {
-  obstacle.push(new Obstacles(ctx, canvas));
+  if (counter % 10 === 0) {
+    obstacle.push(new Obstacles(ctx, canvas));
   }
   obstacle.forEach((ob) => {
     ob.draw();
@@ -40,13 +41,10 @@ function startGame() {
       ob.height + ob.y > myCar.y
     ) {
       gameOver();
-    } 
+    }
   });
   counter++;
-  if (counter % 10 === 0) {
     moveCar();
-};
-
 }
 
 function moveCar() {
@@ -61,10 +59,6 @@ function moveCar() {
     }
   });
 }
-
-
-
-
 
 function gameOver() {
   clearInterval(gameLoop);
