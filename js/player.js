@@ -14,11 +14,13 @@ class Car {
     }
 
     moveLeft() {
-    this.x -= 1;
+    if (this.x <= 0) return;
+    else this.x -= 1;
     };
 
     moveRight() {
-    this.x += 1;
+    if (this.x + this.width >= canvas.width) return;
+    else this.x += 1;
     }
 }
 
